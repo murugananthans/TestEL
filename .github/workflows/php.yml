@@ -29,6 +29,7 @@ jobs:
       - name: Setup PHP
         #uses: shivammathur/setup-php@v2
         uses: actions/checkout@v2
+          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true
         with:
           php-version: ${{ env.PHP_VERSION }}
 
