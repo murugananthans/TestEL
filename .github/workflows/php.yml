@@ -82,4 +82,9 @@ jobs:
           name:  php-app
           resourceType: VirtualMachine
           tags: web1 # Update or remove value to match your tag
+          
+        
+        
+          targetType: 'inline'              
+          Package: '$(Pipeline.Workspace)/drop/**/*.zip'
       
