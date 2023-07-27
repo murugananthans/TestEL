@@ -77,19 +77,17 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          #name: php-app
-          
+          name: php-app       
     
       
-          name:  php-app
-          resourceType: VirtualMachine
-          tags: web1 # Update or remove value to match your tag
-          
-      - name: Create SSH key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ../private.key
-          sudo chmod 600 ../private.key
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-        shell: bash
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp       
+        uses:  appleboy/ssh-action@master
+       
+        with:
+          host : ${{secrets.HOST}}
+          username : ${{secrets.USER}}
+          key : ${{secrets.KEY}}
+          port : ${{secrets.PORT}}
+          script: whoami
 
