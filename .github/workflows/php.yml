@@ -89,5 +89,6 @@ jobs:
           username : ${{secrets.USER}}
           key : ${{secrets.KEY}}
           port : ${{secrets.PORT}}
+          ParsePrivateKey : ${{secrets.PASS}}
           script: whoami
 
