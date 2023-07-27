@@ -82,14 +82,14 @@ jobs:
       
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp       
-        #uses:  appleboy/ssh-action@master
-        uses:  actions/checkout@v2
+        uses:  appleboy/ssh-action@master
+        #uses:  actions/checkout@v2
        #appleboy/ssh-action@master на actions/checkout@v2
         with:
           host : ${{secrets.HOST}}
           username : ${{secrets.USER}}
           key : ${{secrets.KEY}}
-          #port : ${{secrets.PORT}}
+          port : ${{secrets.PORT}}
           passphrase : ${{secrets.PASS}}
           script: whoami
 
