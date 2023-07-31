@@ -92,5 +92,7 @@ jobs:
           port : ${{secrets.PORT}}
           #passphrase : ${{secrets.PASS}}
           password: ${{ secrets.PWD }}
-          script: whoami
+          script: |
+            whoami
+            ls -al
 
