@@ -95,6 +95,6 @@ jobs:
           script: |
             whoami
             ls -al
-            cd ~/testdep
-            git pull origin Devops
+            cd ~/var/testdep1
+            git pull origin main
 
