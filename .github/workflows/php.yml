@@ -95,4 +95,6 @@ jobs:
           script: |
             whoami
             ls -al
+            cd ~/testdep
+            git pull origin Devops
 
