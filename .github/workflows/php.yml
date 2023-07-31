@@ -95,6 +95,6 @@ jobs:
           script: |
             whoami
             ls -al
-            cd ~/var/testdep1
+            cd ~/testdep1
             git pull origin main
 
