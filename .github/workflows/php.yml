@@ -82,8 +82,8 @@ jobs:
       
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp       
-        uses:  appleboy/ssh-action@master
-        #uses: actions/upload-artifact@v3
+        #uses:  appleboy/ssh-action@master
+        uses: actions/upload-artifact@v3
         #uses: actions/download-artifact@v3
         with:
           host : ${{secrets.HOST}}
@@ -101,5 +101,8 @@ jobs:
        #- uses: actions/upload-artifact@v3
           #name: my-artifact
           #path: testdep2  # or path/to/artifact
-          #path : testdep2
+          name: php-app
+          path : testdep2
+          
+  
               
