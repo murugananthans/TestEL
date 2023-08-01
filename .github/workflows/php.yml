@@ -77,7 +77,8 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: php-app       
+          name: php-app
+          path: distfiles
     
       - uses: actions/checkout@v3
       - name: 'Deploy to Azure VM'
@@ -93,7 +94,7 @@ jobs:
           port : ${{secrets.PORT}}
           #passphrase : ${{secrets.PASS}}
           password: ${{ secrets.PWD }}
-          #source :  /home/runner/work/TestEL/TestEL
+          source :  distfiles/*
           target: testdep2
           #script: |
             #whoami
