@@ -82,7 +82,7 @@ jobs:
       
       - name: 'Deploy to Azure VM'
         id: deploy-to-webapp 
-        #uses: appleboy/scp-action@v0.1.4
+        uses: appleboy/scp-action@v0.1.4
         #uses:  appleboy/ssh-action@master
         #uses: actions/upload-artifact@v3
         #uses: actions/download-artifact@v3
