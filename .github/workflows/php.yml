@@ -99,5 +99,5 @@ jobs:
             #- uses: actions/upload-artifact@v3
        #- uses: actions/upload-artifact@v3
           name: my-artifact
-          path: testdep2/to/artifact  # or path/to/artifact
+          path: testdep2  # or path/to/artifact
 
