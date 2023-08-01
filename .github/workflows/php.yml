@@ -74,12 +74,7 @@ jobs:
       
       
     steps:
-      - name: Download artifact from build job
-        #uses: actions/download-artifact@v3
-        #with:
-          #name: php-app
-          #path: distfiles
-    
+     # - name: Download artifact from build job
       - uses: actions/upload-artifact@v3
         with:
           name: php-app
