@@ -99,6 +99,6 @@ jobs:
             #git pull origin main
             #- uses: actions/upload-artifact@v3
        #- uses: actions/upload-artifact@v3
-          name: my-artifact
+          #name: my-artifact
           path: testdep2  # or path/to/artifact
 
