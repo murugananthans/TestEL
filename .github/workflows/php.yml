@@ -79,9 +79,9 @@ jobs:
         with:
           name: php-app       
     
-      
+      - uses: actions/checkout@v3
       - name: 'Deploy to Azure VM'
-        id: deploy-to-webapp 
+        #id: deploy-to-webapp      
         uses: appleboy/scp-action@v0.1.4
         #uses:  appleboy/ssh-action@master
         #uses: actions/upload-artifact@v3
