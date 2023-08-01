@@ -92,7 +92,7 @@ jobs:
           port : ${{secrets.PORT}}
           #passphrase : ${{secrets.PASS}}
           password: ${{ secrets.PWD }}
-          source :  download-artifact@v3
+          source :  cicdssh
           target: testdep2/
           script: |
             whoami
