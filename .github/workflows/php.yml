@@ -80,7 +80,7 @@ jobs:
           name: php-app       
     
       
-      - name: 'Deploy to Azure Web App'
+      - name: 'Deploy to Azure VM'
         id: deploy-to-webapp       
         uses:  appleboy/ssh-action@master
         #uses: actions/upload-artifact@v3
@@ -92,6 +92,8 @@ jobs:
           port : ${{secrets.PORT}}
           #passphrase : ${{secrets.PASS}}
           password: ${{ secrets.PWD }}
+          source :  download-artifact@v3
+          target: testdep2/
           script: |
             whoami
             ls -al
