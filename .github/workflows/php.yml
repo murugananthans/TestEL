@@ -95,7 +95,7 @@ jobs:
           script: |
             whoami
             ls -al
-            cd /testdep2            
+            cd testdep2            
             #git pull origin main
             #- uses: actions/upload-artifact@v3
        #- uses: actions/upload-artifact@v3
