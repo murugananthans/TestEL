@@ -89,11 +89,7 @@ jobs:
           port : ${{secrets.PORT}}          
           password: ${{secrets.PWD}}
           source :  distfiles/*
-          target: /testdep2
-          #script: |
-            #whoami
-            #ls -al
-            #pwd
+          target: /testdep2    
             
           
           
