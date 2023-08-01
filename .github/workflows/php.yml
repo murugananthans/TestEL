@@ -92,9 +92,13 @@ jobs:
           port : ${{secrets.PORT}}
           #passphrase : ${{secrets.PASS}}
           password: ${{ secrets.PWD }}
-          script: |
-            whoami
-            ls -al
-            cd /testdep2
-            git pull origin main
+          #script: |
+            #whoami
+            #ls -al
+            #cd /testdep2            
+            #git pull origin main
+            #- uses: actions/upload-artifact@v3
+         
+          name: my-artifact
+          path: testdep2  # or path/to/artifact
 
