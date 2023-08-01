@@ -95,7 +95,7 @@ jobs:
           #passphrase : ${{secrets.PASS}}
           password: ${{ secrets.PWD }}
           source :  distfiles/*
-          target: testdep2
+          target: /testdep2
           #script: |
             #whoami
             #ls -al
