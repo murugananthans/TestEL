@@ -90,7 +90,7 @@ jobs:
           host : ${{secrets.HOST}}
           username : ${{secrets.USER}}          
           port : ${{secrets.PORT}}
-          password: ${{ secrets.PWD }}
+          password: ${{ secrets.PWD}}
           source :  distfiles/*
           target: /testdep2
           
