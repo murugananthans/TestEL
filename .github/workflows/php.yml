@@ -82,9 +82,9 @@ jobs:
       
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp       
-        #uses:  appleboy/ssh-action@master
+        uses:  appleboy/ssh-action@master
         #uses: actions/upload-artifact@v3
-        uses: actions/download-artifact@v3
+        #uses: actions/download-artifact@v3
         with:
           host : ${{secrets.HOST}}
           username : ${{secrets.USER}}
