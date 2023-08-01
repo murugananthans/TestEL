@@ -92,12 +92,12 @@ jobs:
           port : ${{secrets.PORT}}
           #passphrase : ${{secrets.PASS}}
           password: ${{ secrets.PWD }}
-          source :  cicdssh
+          source :  cicdssh.pub
           target: testdep2/
-          script: |
-            whoami
-            ls -al
-            cp -r  /buildArtifacts/ /testdep2/
+          #script: |
+            #whoami
+            #ls -al
+            #cp -r  /buildArtifacts/ /testdep2/
             #cd ~/testdep2            
             #git pull origin main
             #- uses: actions/upload-artifact@v3
