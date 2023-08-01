@@ -66,33 +66,33 @@ jobs:
           name: php-app
           path: .
   deploy:
-    name: deploy artifact
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout
-      uses: actions/checkout@v3
+      name: deploy artifact
+      runs-on: ubuntu-latest
+      steps:
+      - name: checkout
+        uses: actions/checkout@v3
 
-    - run: echo hello > world.txt
+      - run: echo hello > world.txt
 
-    - uses: actions/upload-artifact@v3
-      with:
-        name: my-artifact
-        path: world.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: world.txt
 
-    - uses: actions/download-artifact@v3
-      with:
-        name: my-artifact
-        path: distfiles
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: distfiles
 
-    - name: copy file to server
-      uses: appleboy/scp-action@v0.1.4
-      with:
-          host : ${{secrets.HOST}}
-          username : ${{secrets.USER}}          
-          port : ${{secrets.PORT}}
-          password: ${{ secrets.PWD}}
-          source :  distfiles/*
-          target: /testdep2
+      - name: copy file to server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+            host : ${{secrets.HOST}}
+            username : ${{secrets.USER}}          
+            port : ${{secrets.PORT}}
+            password: ${{secrets.PWD}}
+            source :  distfiles/*
+            target: /testdep2
           
           
   
