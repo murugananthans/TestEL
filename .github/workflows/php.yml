@@ -82,8 +82,8 @@ jobs:
       
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp       
-        #uses:  appleboy/ssh-action@master
-        uses: actions/upload-artifact@v3
+        uses:  appleboy/ssh-action@master
+        #uses: actions/upload-artifact@v3
         #uses: actions/download-artifact@v3
         with:
           host : ${{secrets.HOST}}
@@ -92,14 +92,14 @@ jobs:
           port : ${{secrets.PORT}}
           #passphrase : ${{secrets.PASS}}
           password: ${{ secrets.PWD }}
-          #script: |
-            #whoami
-            #ls -al
-            #cd /testdep2            
+          script: |
+            whoami
+            ls -al
+            cd /testdep2            
             #git pull origin main
             #- uses: actions/upload-artifact@v3
        #- uses: actions/upload-artifact@v3
           #name: my-artifact
           #path: testdep2  # or path/to/artifact
-          Target: testdep2
-
+          #path : testdep2
+              
