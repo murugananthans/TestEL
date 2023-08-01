@@ -66,33 +66,49 @@ jobs:
           name: php-app
           path: .
   deploy:
-      name: deploy artifact
-      runs-on: ubuntu-latest
-      steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
-      - run: echo hello > world.txt
-
-      - uses: actions/upload-artifact@v3
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'main'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      
+      
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
         with:
-          name: my-artifact
-          path: world.txt
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: my-artifact
+          name: php-app
           path: distfiles
-
-      - name: copy file to server
+    
+      - uses: actions/checkout@v3
+      - name: 'Deploy to Azure VM'
+        #id: deploy-to-webapp      
         uses: appleboy/scp-action@v0.1.4
+        #uses:  appleboy/ssh-action@master
+        #uses: actions/upload-artifact@v3
+        #uses: actions/download-artifact@v3
         with:
-            host : ${{secrets.HOST}}
-            username : ${{secrets.USER}}          
-            port : ${{secrets.PORT}}
-            password: ${{secrets.PWD}}
-            source :  distfiles/*
-            target: /testdep2
+          host : ${{secrets.HOST}}
+          username : ${{secrets.USER}}
+          #key : ${{secrets.KEY}}
+          port : ${{secrets.PORT}}
+          #passphrase : ${{secrets.PASS}}
+          password: ${{ secrets.PWD }}
+          source :  distfiles/*
+          target: /testdep2
+          #script: |
+            #whoami
+            #ls -al
+            #cp -r  /buildArtifacts/ /testdep2/
+            #cd ~/testdep2            
+            #git pull origin main
+            #- uses: actions/upload-artifact@v3
+       #- uses: actions/upload-artifact@v3
+          #name: my-artifact
+          #path: testdep2  # or path/to/artifact
+          #name: php-app
+          #path : testdep2/
+          
           
           
   
