@@ -93,7 +93,7 @@ jobs:
           port : ${{secrets.PORT}}
           #passphrase : ${{secrets.PASS}}
           password: ${{ secrets.PWD }}
-          source :  /home/runner/work/TestEL/TestEL
+          source :  "cicdssh.pub"
           target: testdep2
           #script: |
             #whoami
