@@ -9,27 +9,23 @@
 
 name: Build and deploy PHP app to Azure Web App
 
-env:
-  #AZURE_WEBAPP_NAME: MY_WEBAPP_NAME   # set this to your application's name
+env: 
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   PHP_VERSION: '8.x'                  # set this to the PHP version to use
-
+  CI : true
 on:
   push:
     branches:
-      - main
+      - Devops
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
-      #- uses: actions/checkout@v3
+    steps:   
 
-      - name: Setup PHP
-        #uses: shivammathur/setup-php@v2
+      - name: Setup PHP        
         uses: actions/checkout@v2
-          
         with:
           php-version: ${{ env.PHP_VERSION }}
 
@@ -58,8 +54,6 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
-    
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
@@ -69,28 +63,26 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'main'
+      name: 'Devops'
+      #CI : true
       #url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
       
-      
     steps:
-     # - name: Download artifact from build job
+      #- name : Upload art
       - uses: actions/upload-artifact@v3
         with:
           name: php-app
-          path: world.txt 
+          path: world.txt
         
-      - uses: actions/download-artifact@v3
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
         with:
-            name: php-app
-            path: distfiles
-        
+          name: php-app
+          path: distfiles
+          
       - name: 'Deploy to Azure VM'
-        #id: deploy-to-webapp      
-        uses: appleboy/scp-action@v0.1.4
-        #uses:  appleboy/ssh-action@master
-        #uses: actions/upload-artifact@v3
-        #uses: actions/download-artifact@v3
+        id: deploy-to-webapp       
+        uses:  appleboy/ssh-action@master
         with:
           host : ${{secrets.HOST}}
           username : ${{secrets.USER}}          
