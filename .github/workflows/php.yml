@@ -1,14 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# GitHub recommends pinning actions to a commit SHA.
-# To get a newer version, you will need to update the SHA.
-# You can also reference a tag or branch, but the action may change without warning.
-
-name: Build and deploy PHP app to Azure Web App
-
 env: 
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   PHP_VERSION: '8.x'                  # set this to the PHP version to use
@@ -72,13 +61,13 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: php-app
-          path: world.txt
+          path: .
         
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: php-app
-          path: distfiles
+          path: /home/runner/work/CMS/CMS/distfiles
           
       - name: 'Deploy to Azure VM'
         id: deploy-to-webapp       
@@ -88,8 +77,8 @@ jobs:
           username : ${{secrets.USER}}          
           port : ${{secrets.PORT}}          
           password: ${{secrets.PWD}}
-          source :  distfiles/*
-          target: /testdep2
+          source :  /home/runner/work/CMS/CMS/distfiles/*
+          target: /var/testdep3
           script: |
             whoami
             ls -al
