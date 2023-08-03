@@ -77,7 +77,7 @@ jobs:
           port : ${{secrets.PORT}}
           password : ${{secrets.PWD}}
           #run : sudo su
-          source : php-app-dep/
+          source : php-app-dep/*
           target: /var/testdep3
           #script: whoami         
           script: |
