@@ -1,6 +1,8 @@
+name: Build and deploy PHP app
+
 env: 
-  #AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  PHP_VERSION: '8.x'                   # set this to the PHP version to use  
+ # AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  PHP_VERSION: '8.x'                  # set this to the PHP version to use
   CI : true
 on:
   push:
@@ -29,7 +31,6 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
       - name: Set up dependency caching for faster installs
         uses: actions/cache@v3
         if: steps.check_files.outputs.files_exists == 'true'
@@ -38,7 +39,6 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Devops'
+      name: 'main'
       #CI : true
       #url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
       
@@ -67,16 +67,21 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: php-app
-          path: /home/runner/work/CMS/CMS/distfiles
+          #path: "/home/runner/work/CMS/CMS/distfiles"
+          path: "dist/"
           
       - name: 'Deploy to Azure VM'
-        id: deploy-to-webapp       
-        uses:  appleboy/ssh-action@master
+        #id: deploy-to-webapp       
+        #uses:  appleboy/ssh-action@master
+        #uses: easingthemes/ssh-deploy@main
+        uses: appleboy/scp-action@v0.1.4
         with:
+          
           host : ${{secrets.HOST}} 
           username : ${{secrets.USER}}          
           port : ${{secrets.PORT}}          
           password: ${{secrets.PWD}}
+          run : sudo su
           source :  /home/runner/work/CMS/CMS/distfiles/*
           target: /var/testdep3
           script: |
