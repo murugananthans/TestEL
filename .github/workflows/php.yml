@@ -81,8 +81,8 @@ jobs:
           username : ${{secrets.USER}}          
           port : ${{secrets.PORT}}          
           password: ${{secrets.PWD}}
-          run : sudo su
-          source :  /home/runner/work/CMS/CMS/distfiles/*
+          #run : sudo su
+          source : /home/runner/work/CMS/CMS/distfiles/*
           target: /var/testdep3
           script: |
             whoami
