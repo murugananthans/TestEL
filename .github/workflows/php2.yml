@@ -7,7 +7,7 @@ env:
 on:
   push:
     branches:
-      - Devops
+      - main
 
 jobs:
   build:
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Devops'
+      name: 'main'
       #CI : true
       #url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
       
@@ -80,7 +80,7 @@ jobs:
           username : ${{secrets.USER}}
           #key : ${{secrets.KEY}}
           port : ${{secrets.PORT}}
-          password : ${{secrets.PASS}}
+          password : ${{secrets.PWD}}
           source: /home/runner/work/CMS/CMS/distfiles/*
           target: /var/testdep3
           #script: whoami         
