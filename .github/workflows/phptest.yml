@@ -79,7 +79,7 @@ jobs:
           #run : sudo su
           source : php-app-dep/*
           target: /var/testdep3
-          #strip_components: 1
+          strip_components: 1
           #script: whoami         
           script: |
             whoami
