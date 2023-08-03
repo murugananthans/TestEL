@@ -1,13 +1,12 @@
-name: Build and deploy PHPtestdep app
+name: Build and deploy PHP app
 
 env: 
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  PHP_VERSION: '8.x'                  # set this to the PHP version to use
+  PHP_VERSION: '8.x'        # set this to the PHP version to use
   CI : true
 on:
   push:
     branches:
-      - main
+      - Devops
 
 jobs:
   build:
@@ -54,26 +53,21 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'main'
+      name: 'Devops'
       #CI : true
-      #url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-      
+            
     steps:
-      #- name : Upload art
-      - uses: actions/upload-artifact@v3
-        with:
-          name: php-app
-          path: .
-        
+              
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: php-app
-          path: /home/runner/work/CMS/CMS/distfiles
+          name: php-app          
+          path: "php-app-dep/"
           
       - name: 'Deploy to Azure VM'
-        id: deploy-to-webapp       
+        #id: deploy-to-webapp       
         #uses:  appleboy/ssh-action@master
+        #uses: easingthemes/ssh-deploy@main
         uses: appleboy/scp-action@v0.1.4
        
         with:
