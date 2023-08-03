@@ -1,4 +1,4 @@
-name: Build and deploy PHP2 app
+name: Build and deploy PHPtestdep app
 
 env: 
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
@@ -81,6 +81,7 @@ jobs:
           #key : ${{secrets.KEY}}
           port : ${{secrets.PORT}}
           password : ${{secrets.PWD}}
+          run : sudo su
           source: /home/runner/work/CMS/CMS/distfiles/*
           target: /var/testdep3
           #script: whoami         
