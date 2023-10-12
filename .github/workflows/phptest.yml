@@ -1,4 +1,4 @@
-name: Build and deploy PHP app
+name: Build and deploy PHP app 
 
 env: 
   PHP_VERSION: '8.x'        # set this to the PHP version to use
