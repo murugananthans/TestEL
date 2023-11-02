@@ -58,14 +58,15 @@ jobs:
       #CI : true
             
     steps:
-      - name: unzip artifact for deployment
-        run: unzip release.zip
+      #- name: unzip artifact for deployment
+       # run: unzip release.zip
     
-      #- name: Download artifact from build job
-       # uses: actions/download-artifact@v3
-        #with:
-        #  name: php-app          
-         # path: "php-app-dep/"
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: php-app          
+          path: "php-app-dep/"
+          run: unzip release.zip
            
                 
           
