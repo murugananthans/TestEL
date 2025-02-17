@@ -1,7 +1,7 @@
 name: Build and deploy PHP app 
 
 env: 
-  PHP_VERSION: '8.x'        # set this to the PHP version to use
+  PHP_VERSION: '8.x'        # set this to the PHP version to use 
   CI : true
 on:
   push:
